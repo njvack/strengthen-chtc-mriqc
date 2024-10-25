@@ -1,0 +1,25 @@
+# Run fMRIprep from the official docker repository
+# This is the newest version as of 2024-10-24
+# Nate Vack <njvack@wisc.edu>
+
+container_image = docker://nipreps/fmriprep:24.1.1
+docker_override_entrypoint = true
+
+transfer_input_files = freesurfer_license.txt
+transfer_output_files = ""
+
+executable = run_fmriprep.bash
+
+request_disk = 128G
+request_memory = 32G
+request_cpus = 4
+
+log = log/$(snum)-$(JobId).txt
+error = err/$(snum)-$(JobId).txt
+output = out/$(snum)-$(JobId).txt
+
+arguments = $(snum)
+
+snum = sub-mini
+
+queue
